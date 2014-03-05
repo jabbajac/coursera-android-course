@@ -1,0 +1,7 @@
+02-26 21:30:28.370: I/Lab-UserInterface(2336): Entered footerView.OnClickListener.onClick()
+02-26 21:30:30.920: I/Lab-UserInterface(2336): Entered cancelButton.OnClickListener.onClick()
+02-26 21:30:31.500: I/Lab-UserInterface(2336): Entered onActivityResult()
+02-26 21:30:32.650: I/Lab-UserInterface(2336): Entered footerView.OnClickListener.onClick()
+02-26 21:30:34.920: I/Lab-UserInterface(2336): Entered submitButton.OnClickListener.onClick()
+02-26 21:30:35.500: I/Lab-UserInterface(2336): Entered onActivityResult()
+02-26 21:30:42.270: I/Lab-UserInterface(2336): Item 0: Title:t4,Priority:LOW,Status:DONE,Date:2014-03-05 21:30:00

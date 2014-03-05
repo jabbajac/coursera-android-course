@@ -1,0 +1,99 @@
+12-14.
+3G - 7s
+EDGE - 24s
+
+3G - 5S
+EDGE - 20s
+
+3G - 6S
+EDGE - 25s
+
+3G - 6s
+EDGE - 23s
+
+3G - 4s
+EDGE - 22s
+
+15. 
+Average load time 3G: 5.6s
+Average load time EDGE: 22.8s
+
+The emulator does affect the network speed. On EDGE the emulator will bandwidth limit the virtual device to simulate a slower network
+
+
+26
+a. 9 levels deep
+b. The parent is a LinearLayout. It's parent contains 3 children. The plus button has a relative index of 2. 
+
+27
+b.
+Activity - DeskClocks
+	<activity android:name="DeskClock"
+                android:label="@string/app_label"
+                android:theme="@style/DeskClock"
+                android:icon="@mipmap/ic_launcher_alarmclock"
+                android:launchMode="singleTask"
+                >
+Services - AlarmKlaxon
+	<service android:name="AlarmKlaxon"
+                android:exported="false"
+                android:description="@string/alarm_klaxon_service_desc">
+            <intent-filter>
+                <action android:name="com.android.deskclock.ALARM_ALERT" />
+            </intent-filter>
+        </service>
+Content Providers - AlarmProvider
+	<provider android:name="AlarmProvider"
+                android:authorities="com.android.deskclock"
+                android:exported="false" />
+Broadcast Recievers - AlarmReceiver
+	<receiver android:name="AlarmReceiver"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="com.android.deskclock.ALARM_ALERT" />
+                <action android:name="alarm_killed" />
+                <action android:name="cancel_snooze" />
+            </intent-filter>
+        </receiver>
+c.
+3 layout directories
+  layout - for phones
+  layout-land - for phones in landscape mode
+  layout-sw600dp - for tablets
+d.
+56 values directories
+alert
+ringtone
+e.
+cities is references in the onCreateView method of ClockFragment as a parameter for findViewByID
+
+28.
+b.
+  The log tag used by the application's main Activity is WikiNotes. 
+  From WikiNotes.java `private static final String TAG = "WikiNotes";`
+c. 
+  The message associated with the first Log entry emitted when the application starts running is "Exiting onCreate()"
+
+29.
+b.
+  47,035 objects have been created
+c.
+  Data object was allocated most frequently
+d.
+  889.586 KB of memory has been allocated for this type of Object
+
+30.
+b.
+  showWikiNote
+c. 
+  WikiNotes.java
+d. 
+  inclusive real time -351.741
+  exclusive real time - 0.516
+  Exclusive real time is time spent in the method alone, not counting the time spent in functions called from this method. Inclusive includes the times spend in functions called from this method. 
+
+35.
+a. 
+  Before line 94, mathResult did not exist. At line 94 mathResult is set to `result.getText().toString(). After line 94, mathResult has a value of "96".
+b.
+  Since SimpleCalc does not allow the creation of negative numbers so NUMBER_NEG_22 actually is only 22. Since we added the values together 22 and 74 give 96. The intention was to try and get 52 but due to the limitations of SimpleCalc, that was not accomplished. Whether or not the value is a correct value depends on one's interpretation of whether correct is having the answer match the intended answer or correct is the function properly executing what it is supposed to do. Since SimpleCalc only saw 22 and not -22 one can argue that SimpleCalc is correct in show ing a result of 96.
