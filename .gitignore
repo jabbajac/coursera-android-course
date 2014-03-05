@@ -1,7 +1,8 @@
 *.zip
 *.mp4
-*.pdf
 .svn/
 Lectures/
 __MACOSX/
 .DS_Store
+*.jar
+*.class
