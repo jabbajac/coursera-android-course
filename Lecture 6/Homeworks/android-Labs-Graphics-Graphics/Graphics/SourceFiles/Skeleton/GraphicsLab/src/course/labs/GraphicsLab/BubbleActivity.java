@@ -87,15 +87,23 @@ public class BubbleActivity extends Activity {
 				.getStreamVolume(AudioManager.STREAM_MUSIC)
 				/ mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 
-		// TODO - make a new SoundPool, allowing up to 10 streams 
-		mSoundPool = null;
+		// TODO - (Completed untested) make a new SoundPool, allowing up to 10 streams 
+		mSoundPool = new SoundPool(10,AudioManager.STREAM_MUSIC,0);
 
-		// TODO - set a SoundPool OnLoadCompletedListener that calls setupGestureDetector()
+		// TODO - (Completed untested) set a SoundPool OnLoadCompletedListener that calls setupGestureDetector()
+		mSoundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+			
+			@Override
+			public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+				// TODO Auto-generated method stub
+				setupGestureDetector();
+			}
+		});
 
 		
-		// TODO - load the sound from res/raw/bubble_pop.wav
-		mSoundID = 0;
-
+		// TODO - (Completed untested) load the sound from res/raw/bubble_pop.wav
+		mSoundID = mSoundPool.load(this, R.raw.bubble_pop, 1);
+		
 	}
 
 	@Override
@@ -142,21 +150,23 @@ public class BubbleActivity extends Activity {
 			@Override
 			public boolean onSingleTapConfirmed(MotionEvent event) {
 
-				// TODO - Implement onSingleTapConfirmed actions.
+				// TODO - (Completed untested) Implement onSingleTapConfirmed actions.
 				// You can get all Views in mFrame using the
 				// ViewGroup.getChildCount() method
-
-
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+				int numBubbles = mFrame.getChildCount();
+				boolean bubblePopped = false;
+				for(int i = 0; i<numBubbles; i++){
+					BubbleView bubble = (BubbleView) mFrame.getChildAt(i);
+					if (bubble.intersects(event.getRawX(), event.getRawY())){
+						bubble.stop(true);
+						bubblePopped = true;
+						break;
+					}
+				}
+				if(!bubblePopped){
+					BubbleView newBubble = new BubbleView(mFrame.getContext(), event.getRawX(), event.getRawY());
+					mFrame.addView(newBubble);
+				}
 				return false;
 			}
 		});
@@ -166,7 +176,7 @@ public class BubbleActivity extends Activity {
 	public boolean onTouchEvent(MotionEvent event) {
 
 		// TODO - delegate the touch to the gestureDetector 
-
+		mGestureDetector.onTouchEvent(event);
 		
 		
 		
@@ -181,7 +191,7 @@ public class BubbleActivity extends Activity {
 	protected void onPause() {
 		
 		// TODO - Release all SoundPool resources
-
+		mSoundPool.release();
 
 		
 		
@@ -386,7 +396,8 @@ public class BubbleActivity extends Activity {
 		@Override
 		protected synchronized void onDraw(Canvas canvas) {
 
-			// TODO - save the canvas
+			// TODO - (Completed untested) save the canvas
+			canvas.save();
 
 
 			// TODO - increase the rotation of the original image by mDRotate
